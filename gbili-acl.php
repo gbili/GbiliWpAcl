@@ -85,7 +85,7 @@ class GbiliAcl
             return $this->userNeeds;
         }
         foreach ($this->acl as $capability => $restrictedResources) {
-            $this->manageAccess($capability, $restrictedResources);
+            $this->userNeeds = $this->getFlow($capability, $restrictedResources);
         }
         return $this->userNeeds;
     }
@@ -97,13 +97,12 @@ class GbiliAcl
      *     else redirect to home and serve normally
      *
      */
-    public function manageAccess($capability, $restrictedResources)
+    public function getFlow($capability, $restrictedResources)
     {
         if (!$this->isRequestInRestrictedResources($restrictedResources)) {
-            $this->userNeeds = self::NORMAL_FLOW;
-            return;
+            return self::NORMAL_FLOW;
         }
-        $this->userNeeds = (!current_user_can($capability))? self::ACTION_REDIRECT : self::ACTION_THEME_SWITCH;
+        return (!current_user_can($capability))? self::ACTION_REDIRECT : self::ACTION_THEME_SWITCH;
     }
 
     /**
