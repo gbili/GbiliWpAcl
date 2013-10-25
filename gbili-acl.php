@@ -6,7 +6,7 @@
 /*
 Plugin Name: Gbili Acl
 Plugin URI: http://wordpress.org/extend/plugins/gbili-acl/
-Description: Deny access to resources.
+Description: Deny access of restricted resources to unlogged users.
 Author: Guillermo Devi
 Version: 0.1
 Author URI: http://c.onfi.gs/
